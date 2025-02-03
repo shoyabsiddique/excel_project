@@ -33,7 +33,7 @@
   },
   {
     "rough": "BATTERY",
-    "formatted": "Battery"
+    "formatted": "Battery (%BIS NO.% - %BIS MODEL NO.%) %MAH% MAh"
   },
   {
     "rough": "BACK COVER Something",
