@@ -341,8 +341,10 @@ def process_data(
     
     final_columns = [
         column_config['mark'], 'CTN NO', 'DESCRIPTION',
-        'T.CTN', 'QTY', column_config['units'], 'T.QTY', 'WT', 'CONSOLIDATED_DESC'
+        'T.CTN', 'QTY', 'UNITS', 'T.QTY', 'WT', 'CONSOLIDATED_DESC'
     ]
+    print(final_columns)
+    print(grouped)
     final_dataset = grouped[final_columns]
     
     # Step 3: (Optional) You may reapply substitution on final_dataset if needed.
@@ -397,29 +399,29 @@ def process_data(
 # Ensure that if you want to use placeholders like %MAH%, %BIS NO.% etc.,
 # the corresponding columns must be kept.
 column_config = {
-    'mark': 'MARK',
-    'description': 'DESCRIPTION',
-    'pcs_per_ctn': 'PCS/CTN',
-    'ctn_no': 'CTN NO',
-    'ctn_total': 'CTN/TOTAL',
-    'weight_total': 'WEIGHT/TOTAL',
-    'units': 'UNITS',
+    'mark': 'CUS. NO',
+    'description': 'ITEM NAME',
+    'pcs_per_ctn': 'CTNR NO',
+    'ctn_no': 'CTN',
+    'ctn_total': 'Qty/ctn',
+    'weight_total':'G.W.',
+    'units': 'Unit',
     # Include additional columns needed for substitution:
-    'mah': 'MAH',
-    'bis no.': 'BIS NO.',
-    'bis model no.': 'BIS MODEL NO.'
+    # 'mah': 'MAH',
+    # 'bis no.': 'BIS NO.',
+    # 'bis model no.': 'BIS MODEL NO.'
 }
 
 # Adjust drop_columns as needed. In this example, we ensure that the 'MAH' column is not dropped.
 drop_columns = ['BIS NO.', 'BIS MODEL NO.', 'MADE IN', 'LOGO']  # 'MAH' is kept for substitution
 
 process_data(
-    input_file='test.xlsx',
-    sheet_name='Sheet1',
-    output_file='processed_revised.xlsx',
+    input_file='FIN-RAN-H11-NS.xlsx',
+    sheet_name='H11-NS',
+    output_file='processed_revised_new.xlsx',
     column_config=column_config,
-    json_mapping_file='names.json',
+    json_mapping_file='names1.json',
     consolidated_start_row=6,
     consolidated_start_col=10,
-    drop_columns=drop_columns
+    drop_columns=None
 )
