@@ -114,8 +114,8 @@ def process_data(
 )
     
     # Rename columns for the final dataset.
-    grouped['T.QTY'] = grouped['T_QTY']
     grouped['T.CTN'] = grouped['T_CTN']
+    grouped['T.QTY'] = grouped['T.CTN'] * grouped['QTY']
     
     final_columns = [
         column_config['mark'], 'CTN NO', 'DESCRIPTION',
